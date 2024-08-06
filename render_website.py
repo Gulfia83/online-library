@@ -17,7 +17,7 @@ def on_reload():
     )
     template = env.get_template('template.html')
 
-    with open(path, 'r', encoding="utf8") as my_file:
+    with open(path, 'r', encoding='utf8') as my_file:
         books_descriptions_json = json.load(my_file)
 
     books_descriptions = list(chunked(books_descriptions_json, BOOKS_ON_PAGE))
@@ -31,7 +31,7 @@ def on_reload():
         )
 
         os.makedirs('pages/', exist_ok=True)
-        with open(os.path.join('pages/', f'index{page_number}.html'), 'w', encoding="utf8") as file:
+        with open(os.path.join('pages/', f'index{page_number}.html'), 'w', encoding='utf8') as file:
             file.write(rendered_page)
 
 
