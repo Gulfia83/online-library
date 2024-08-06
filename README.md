@@ -16,6 +16,10 @@ By default, the program searches for data about books in the 'attachments/book_d
 
 Now you can use the library of books offline. To do this, follow the link [http://127.0.0.1:5500/pages/index1.html ](http://127.0.0.1:5500/pages/index1.html )
 
+## Using the library offline
+
+Download the repository to your computer. Go to the 'pages' folder and open the pages in the browser.
+
 ## Description
 
 The site contains books from the science fiction section.
