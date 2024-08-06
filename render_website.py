@@ -6,11 +6,11 @@ import os
 
 
 BOOKS_ON_PAGE = 20
-NUMBER_OF_COLUMNS = 2
 
 
 def on_reload():
     path = os.getenv('PATH_TO_DESCRIPTIONS', default='attachments/books_descriptions.json')
+
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html'])
@@ -23,12 +23,11 @@ def on_reload():
     books_descriptions = list(chunked(books_descriptions_json, BOOKS_ON_PAGE))
     pages_amount = len(books_descriptions)
     for page_number, books_on_page in enumerate(books_descriptions, 1):
-
+        
         rendered_page = template.render(
-            books_on_page=list(chunked(books_on_page, NUMBER_OF_COLUMNS)),
+            books_on_page = list(chunked(books_on_page, 2)),
             pages_amount=pages_amount,
             page_number=page_number,
-            number_of_columns=NUMBER_OF_COLUMNS
         )
 
         os.makedirs('pages/', exist_ok=True)
