@@ -23,11 +23,15 @@ def on_reload():
     books_descriptions = list(chunked(books_descriptions_json, BOOKS_ON_PAGE))
     pages_amount = len(books_descriptions)
     for page_number, books_on_page in enumerate(books_descriptions, 1):
-        
+        last_book = None
+        if len(books_on_page) % 2:
+            last_book = books_on_page[-1]
+            books_on_page = books_on_page[:-1]
         rendered_page = template.render(
             books_on_page = list(chunked(books_on_page, 2)),
             pages_amount=pages_amount,
             page_number=page_number,
+            last_book=last_book
         )
 
         os.makedirs('pages/', exist_ok=True)
