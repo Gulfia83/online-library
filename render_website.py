@@ -27,7 +27,8 @@ def on_reload():
         rendered_page = template.render(
             books_on_page=list(chunked(books_on_page, NUMBER_OF_COLUMNS)),
             pages_amount=pages_amount,
-            page_number=page_number
+            page_number=page_number,
+            number_of_columns=NUMBER_OF_COLUMNS
         )
 
         os.makedirs('pages/', exist_ok=True)
