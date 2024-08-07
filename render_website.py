@@ -3,7 +3,6 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from livereload import Server
 from more_itertools import chunked
 import os
-import numpy
 
 
 BOOKS_ON_PAGE = 20
@@ -23,14 +22,11 @@ def on_reload():
 
     books_descriptions = list(chunked(books_descriptions_json, BOOKS_ON_PAGE))
     pages_amount = len(books_descriptions)
-    for page_number, books_on_page in enumerate(books_descriptions, 1):
-        left_col, right_col = numpy.array_split(books_on_page, 2)    
+    for page_number, books_on_page in enumerate(books_descriptions, 1):   
         rendered_page = template.render(
-            left_col=left_col,
-            right_col=right_col,
+            books_on_page=books_on_page,
             pages_amount=pages_amount,
             page_number=page_number,
-            zip=zip,
         )
 
         os.makedirs('pages/', exist_ok=True)
